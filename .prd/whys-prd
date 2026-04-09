@@ -1,0 +1,18 @@
+### **Tela: Home**
+Rota: /
+
+**Elementos:**
+- Headline tipográfico dominante (H1 grande)
+- Subheadline explicativo
+- Linha divisória horizontal (borda sólida 1px)
+- CTA primário ("Iniciar conversa")
+- Espaçamentos verticais amplos (15vh–20vh)
+
+**Ações:**
+- Scroll ativa animações stagger (opacity + translateY)
+- CTA direciona para /contato
+
+**Validações:**
+- Texto deve carregar imediatamente (prioridade LCP)
+- Tipografia responsiva (não quebrar layout em mobile)
+- Evitar blocos longos de texto (máx. 2 linhas por seção visível)
