@@ -1,12 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import {
-	PlusIcon,
-} from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 
 type ContactInfoProps = React.ComponentProps<'div'> & {
-	icon: LucideIcon;
+	icon?: any;
 	label: string;
 	value: string;
 };
@@ -36,10 +32,7 @@ export function ContactCard({
 			)}
 			{...props}
 		>
-			<PlusIcon className="absolute -top-3 -left-3 h-6 w-6 text-[#965EC7]" />
-			<PlusIcon className="absolute -top-3 -right-3 h-6 w-6 text-[#965EC7]" />
-			<PlusIcon className="absolute -bottom-3 -left-3 h-6 w-6 text-[#965EC7]" />
-			<PlusIcon className="absolute -right-3 -bottom-3 h-6 w-6 text-[#965EC7]" />
+			{/* Plus marks removed temporarily */}
 			<div className="flex flex-col justify-between lg:col-span-2">
 				<div className="relative h-full space-y-4 px-4 py-8 md:p-8">
 					<h1 className="text-3xl font-black md:text-4xl lg:text-7xl uppercase tracking-tighter leading-none text-white">
@@ -76,9 +69,11 @@ function ContactInfo({
 }: ContactInfoProps) {
 	return (
 		<div className={cn('flex items-center gap-3 py-3', className)} {...props}>
-			<div className="bg-[#965EC7]/20 border border-[#965EC7]/30 rounded-lg p-3">
-				<Icon className="h-5 w-5 text-[#965EC7]" />
-			</div>
+			{Icon && (
+				<div className="bg-[#965EC7]/20 border border-[#965EC7]/30 rounded-lg p-3">
+					<Icon className="h-5 w-5 text-[#965EC7]" />
+				</div>
+			)}
 			<div>
 				<p className="font-bold text-xs uppercase tracking-widest text-[#965EC7]">{label}</p>
 				<p className="text-white/80 text-sm font-mono">{value}</p>

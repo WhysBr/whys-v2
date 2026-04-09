@@ -1,7 +1,6 @@
 import HalideLanding from './components/ui/HalideLanding'
 import AspirationSection from './components/ui/AspirationSection'
 import ContactSection from './components/ui/ContactSection'
-import { MinimalFooter } from './components/ui/minimal-footer'
 
 function App() {
   return (
@@ -9,7 +8,6 @@ function App() {
       <HalideLanding />
       <AspirationSection />
       <ContactSection />
-      <MinimalFooter />
     </main>
   )
 }

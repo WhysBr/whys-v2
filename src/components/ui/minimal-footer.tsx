@@ -1,10 +1,8 @@
 import {
-	FacebookIcon,
-	GithubIcon,
-	InstagramIcon,
-	LinkedinIcon,
-	TwitterIcon,
-	YoutubeIcon,
+	Github,
+	Instagram,
+	Linkedin,
+	Twitter,
 } from 'lucide-react';
 
 export function MinimalFooter() {
@@ -50,19 +48,19 @@ export function MinimalFooter() {
 
 	const socialLinks = [
 		{
-			icon: <GithubIcon className="size-4" />,
+			icon: <Github className="size-4" />,
 			link: '#',
 		},
 		{
-			icon: <InstagramIcon className="size-4" />,
+			icon: <Instagram className="size-4" />,
 			link: '#',
 		},
 		{
-			icon: <LinkedinIcon className="size-4" />,
+			icon: <Linkedin className="size-4" />,
 			link: '#',
 		},
 		{
-			icon: <TwitterIcon className="size-4" />,
+			icon: <Twitter className="size-4" />,
 			link: '#',
 		},
 	];
@@ -72,7 +70,7 @@ export function MinimalFooter() {
             {/* Grain Overlay */}
             <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.02]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3F%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 
-			<div className="mx-auto max-w-7xl px-8 relative z-10">
+			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-7xl px-8 relative z-10 border-x border-white/5">
 				<div className="grid grid-cols-6 gap-12 pb-20">
 					<div className="col-span-6 flex flex-col gap-8 md:col-span-4">
 						<a href="#" className="w-max transition-opacity hover:opacity-100 opacity-60">

@@ -1,5 +1,4 @@
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, PhoneIcon, MapPinIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -17,19 +16,16 @@ export default function ContactSection() {
 					description="For mission-critical inquiries or general outreach, transmit your message through our secure interface below. Response typical within 24 UTC."
 					contactInfo={[
 						{
-							icon: MailIcon,
 							label: 'TRANSMISSION',
 							value: 'whyscontato@gmail.com',
                             className: 'cursor-pointer hover:bg-[#965EC7]/10 transition-colors',
                             onClick: () => window.location.href = 'mailto:whyscontato@gmail.com'
 						},
 						{
-							icon: PhoneIcon,
 							label: 'VOICE LINE',
 							value: '+1 (555) WHYS-COM',
 						},
 						{
-							icon: MapPinIcon,
 							label: 'HQ COORDINATES',
 							value: 'GLOBAL OPERATIONAL NETWORK',
 							className: 'col-span-1',
