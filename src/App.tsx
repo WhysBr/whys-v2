@@ -1,6 +1,7 @@
 import HalideLanding from './components/ui/HalideLanding'
 import AspirationSection from './components/ui/AspirationSection'
 import WorksSection from './components/ui/WorksSection'
+import ShowcaseSection from './components/ui/ShowcaseSection'
 import FAQSection from './components/ui/FAQSection'
 import ContactSection from './components/ui/ContactSection'
 
@@ -10,6 +11,7 @@ function App() {
       <HalideLanding />
       <AspirationSection />
       <WorksSection />
+      <ShowcaseSection />
       <FAQSection />
       <ContactSection />
     </main>
