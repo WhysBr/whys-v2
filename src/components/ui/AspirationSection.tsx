@@ -3,7 +3,6 @@ import { DynamicFrameLayout } from "@/components/ui/dynamic-frame-layout";
 import type { Frame } from "@/components/ui/dynamic-frame-layout";
 import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
-import { GlowCard } from "@/components/ui/spotlight-card";
 
 const demoFrames: Frame[] = [
   {
@@ -141,36 +140,36 @@ export default function AspirationSection() {
           </p>
         </div>
 
-        {/* Our Process - Moved up and scaled up */}
-        <div className="w-full mt-32 flex flex-col items-center mb-40 px-8">
-          <PointerHighlight containerClassName="mb-20">
-            <h2 className="text-6xl md:text-[8rem] font-black uppercase text-white tracking-tighter px-8 py-4">
+        {/* Process Section - Put on top of "WHAT WE OFFER" */}
+        <div className="w-full mt-24 mb-32 flex flex-col items-center px-4 md:px-8">
+          <PointerHighlight containerClassName="mb-16">
+            <h2 className="text-5xl md:text-[5.5rem] font-black uppercase text-white tracking-tighter px-6 py-2 leading-none text-center">
               Our Process
             </h2>
           </PointerHighlight>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 w-full max-w-7xl mt-8">
-            {processSteps.map((step, idx) => (
-              <GlowCard 
-                key={idx} 
-                glowColor="purple" 
-                customSize 
-                className="min-h-[280px] flex flex-col justify-start border-white/5"
-              >
-                <div className="relative z-10">
-                  <span className="text-[#965EC7] font-mono text-[10px] tracking-widest uppercase mb-4 block">
-                    Phase 0{idx + 1}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 w-full max-w-[1400px]">
+             {processSteps.map((step, idx) => (
+                <GlowCard 
+                  key={idx} 
+                  glowColor="purple" 
+                  customSize={true} 
+                  className="min-h-[300px] flex flex-col justify-start w-full border border-white/5"
+                >
+                  <span className="text-[#965EC7] font-mono text-sm font-black tracking-[0.2em] uppercase mb-auto opacity-80">
+                    Stp.0{idx + 1}
                   </span>
-                  <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-4 group-hover:text-[#965EC7] transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <div className="w-8 h-[1px] bg-[#965EC7] mb-6 opacity-50" />
-                  <p className="text-white/50 text-xs font-mono leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </GlowCard>
-            ))}
+                  
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <h3 className="text-white text-2xl font-black uppercase tracking-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/50 text-xs font-mono leading-relaxed pr-4">
+                      {step.desc}
+                    </p>
+                  </div>
+                </GlowCard>
+             ))}
           </div>
         </div>
 

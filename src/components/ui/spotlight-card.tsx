@@ -63,14 +63,14 @@ const GlowCard: React.FC<GlowCardProps> = ({
   };
 
   const getInlineStyles = () => {
-    const baseStyles: any = {
+    const baseStyles: React.CSSProperties & Record<string, any> = {
       '--base': base,
       '--spread': spread,
       '--radius': '14',
-      '--border': '1', // Thinner border for brutalist feel
-      '--backdrop': 'rgba(10, 10, 10, 0.5)',
-      '--backup-border': 'rgba(255, 255, 255, 0.05)',
-      '--size': '300',
+      '--border': '3',
+      '--backdrop': 'hsl(0 0% 10% / 0.8)',
+      '--backup-border': 'var(--backdrop)',
+      '--size': '200',
       '--outer': '1',
       '--border-size': 'calc(var(--border, 2) * 1px)',
       '--spotlight-size': 'calc(var(--size, 150) * 1px)',
@@ -79,7 +79,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         var(--spotlight-size) var(--spotlight-size) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 280) 80% 60% / 0.1), transparent
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
       )`,
       backgroundColor: 'var(--backdrop, transparent)',
       backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
@@ -90,6 +90,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       touchAction: 'none' as const,
     };
 
+    // Add width and height if provided
     if (width !== undefined) {
       baseStyles.width = typeof width === 'number' ? `${width}px` : width;
     }
@@ -101,14 +102,14 @@ const GlowCard: React.FC<GlowCardProps> = ({
   };
 
   const beforeAfterStyles = `
-    [data-glow]::before,
-    [data-glow]::after {
+    .glow-card-container[data-glow]::before,
+    .glow-card-container[data-glow]::after {
       pointer-events: none;
       content: "";
       position: absolute;
       inset: calc(var(--border-size) * -1);
       border: var(--border-size) solid transparent;
-      border-radius: 0px; /* Sharp corners for brutalist feel */
+      border-radius: calc(var(--radius) * 1px);
       background-attachment: fixed;
       background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
       background-repeat: no-repeat;
@@ -118,35 +119,43 @@ const GlowCard: React.FC<GlowCardProps> = ({
       mask-composite: intersect;
     }
     
-    [data-glow]::before {
+    .glow-card-container[data-glow]::before {
       background-image: radial-gradient(
         calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 280) 80% 50% / 0.8), transparent 100%
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
       );
-      filter: brightness(1.5);
+      filter: brightness(2);
     }
     
-    [data-glow]::after {
+    .glow-card-container[data-glow]::after {
       background-image: radial-gradient(
         calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 280) 100% 100% / 0.3), transparent 100%
+        hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
       );
     }
     
-    [data-glow] [data-glow] {
+    .glow-card-container[data-glow] > .glow-card-inner[data-glow] {
       position: absolute;
       inset: 0;
       will-change: filter;
       opacity: var(--outer, 1);
-      border-radius: 0px;
+      border-radius: calc(var(--radius) * 1px);
+      border-width: calc(var(--border-size) * 20);
       filter: blur(calc(var(--border-size) * 10));
       background: none;
       pointer-events: none;
       border: none;
+    }
+    
+    .glow-card-container[data-glow] > .glow-card-inner[data-glow]::before {
+      content: "";
+      position: absolute;
+      inset: -10px;
+      border-width: 10px;
     }
   `;
 
@@ -157,21 +166,24 @@ const GlowCard: React.FC<GlowCardProps> = ({
         ref={cardRef}
         data-glow
         style={getInlineStyles()}
-        className={`
+        className={`glow-card-container
           ${getSizeClasses()}
-          rounded-none 
+          ${!customSize ? 'aspect-[3/4]' : ''}
+          rounded-2xl 
           relative 
-          flex flex-col
+          flex flex-col 
           shadow-[0_1rem_2rem_-1rem_black] 
           p-6 
+          gap-4 
           backdrop-blur-[5px]
-          transition-colors duration-300
-          hover:bg-white/[0.02]
+          overflow-hidden
           ${className}
         `}
       >
-        <div ref={innerRef} data-glow></div>
-        {children}
+        <div ref={innerRef} className="glow-card-inner" data-glow></div>
+        <div className="relative z-10 w-full h-full flex flex-col">
+          {children}
+        </div>
       </div>
     </>
   );
