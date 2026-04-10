@@ -2,6 +2,8 @@ import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { DynamicFrameLayout } from "@/components/ui/dynamic-frame-layout";
 import type { Frame } from "@/components/ui/dynamic-frame-layout";
 import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const demoFrames: Frame[] = [
   {
@@ -79,6 +81,29 @@ export default function AspirationSection() {
     "STORY"
   ];
 
+  const processSteps = [
+    {
+      title: "Briefing",
+      desc: "Intelligent data harvesting via brand profiling."
+    },
+    {
+      title: "Reunion",
+      desc: "Mission alignment and strategic objective lock."
+    },
+    {
+      title: "Wireframe",
+      desc: "Tactical blueprinting of the digital ecosystem."
+    },
+    {
+      title: "Alignment",
+      desc: "Continuous refinement cycles for absolute precision."
+    },
+    {
+      title: "Deployment",
+      desc: "Operational launch and sustained tactical support."
+    }
+  ];
+
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-start py-20 bg-[#0a0a0a] overflow-hidden">
       {/* Grain Overlay to match the rest of the site */}
@@ -114,6 +139,39 @@ export default function AspirationSection() {
             Transitioning from static identity to fluid ecosystem. <br />
             Next Phase: Operational Comms.
           </p>
+        </div>
+
+        {/* Our Process - Moved up and scaled up */}
+        <div className="w-full mt-32 flex flex-col items-center mb-40 px-8">
+          <PointerHighlight containerClassName="mb-20">
+            <h2 className="text-6xl md:text-[8rem] font-black uppercase text-white tracking-tighter px-8 py-4">
+              Our Process
+            </h2>
+          </PointerHighlight>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 w-full max-w-7xl mt-8">
+            {processSteps.map((step, idx) => (
+              <GlowCard 
+                key={idx} 
+                glowColor="purple" 
+                customSize 
+                className="min-h-[280px] flex flex-col justify-start border-white/5"
+              >
+                <div className="relative z-10">
+                  <span className="text-[#965EC7] font-mono text-[10px] tracking-widest uppercase mb-4 block">
+                    Phase 0{idx + 1}
+                  </span>
+                  <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-4 group-hover:text-[#965EC7] transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <div className="w-8 h-[1px] bg-[#965EC7] mb-6 opacity-50" />
+                  <p className="text-white/50 text-xs font-mono leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </GlowCard>
+            ))}
+          </div>
         </div>
 
         <CyberneticBentoGrid />
