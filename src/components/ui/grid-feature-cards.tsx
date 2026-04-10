@@ -29,7 +29,7 @@ export function FeatureCard({ feature, className, ...props }: FeatureCardProps) 
 				</div>
 			</div>
 			
-			<div className="mb-8 p-3 rounded-lg bg-white/5 w-fit border border-white/5 ring-1 ring-white/10 shadow-[0_0_15px_rgba(150,94,199,0.1)]">
+			<div className="mb-8 p-3 rounded-none bg-white/5 w-fit border border-white/5 ring-1 ring-white/10 shadow-[0_0_15px_rgba(150,94,199,0.1)]">
 				<feature.icon className="text-[#965EC7] size-6" strokeWidth={1.5} aria-hidden />
 			</div>
 			

@@ -196,7 +196,7 @@ export default function AspirationSection() {
 
           <AnimatedContainer
             delay={0.2}
-            className="grid grid-cols-1 border border-white/10 divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-3 md:divide-y-0 [&>div]:border-b [&>div]:border-white/10 sm:[&>div]:border-b-0 w-full max-w-6xl shadow-2xl shadow-black/50 overflow-hidden rounded-xl bg-black/40 backdrop-blur-sm"
+            className="grid grid-cols-1 border border-white/10 divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-3 md:divide-y-0 [&>div]:border-b [&>div]:border-white/10 sm:[&>div]:border-b-0 w-full max-w-6xl shadow-2xl shadow-black/50 overflow-hidden rounded-none bg-black/40 backdrop-blur-sm"
           >
             {processFeatures.map((feature, i) => (
               <FeatureCard 
