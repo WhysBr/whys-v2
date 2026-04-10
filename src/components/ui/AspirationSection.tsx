@@ -2,7 +2,6 @@ import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { DynamicFrameLayout } from "@/components/ui/dynamic-frame-layout";
 import type { Frame } from "@/components/ui/dynamic-frame-layout";
 import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";
-import { GooeyMarquee } from "@/components/ui/gooey-marquee";
 
 const demoFrames: Frame[] = [
   {
@@ -118,22 +117,6 @@ export default function AspirationSection() {
         </div>
 
         <CyberneticBentoGrid />
-
-        {/* Process Section */}
-        <div className="w-full mt-32 mb-12 flex flex-col items-center">
-          <GooeyMarquee text="OUR PROCESS — " speed={20} className="mb-12" />
-          
-          <div className="max-w-2xl text-center px-4">
-            <h3 className="text-[#965EC7] font-black tracking-[0.2em] uppercase text-xs mb-6">Tactical Execution Protocol</h3>
-            <p className="text-white/60 font-mono text-sm leading-relaxed">
-              We initiate with a meticulous <strong>brand briefing</strong> and a foundational <strong>reunion</strong> to lock targets. 
-              Following intelligence gathering, we architect structural <strong>wireframes</strong>. 
-              Subsequent <strong>alignment reunions</strong> ensure the trajectory is absolutely precise. 
-              Once the perimeter is secured, we <strong>deploy</strong> the final ecosystem and provide robust, full-spectrum <strong>support</strong>.
-            </p>
-          </div>
-        </div>
-
       </div>
     </section>
   );
