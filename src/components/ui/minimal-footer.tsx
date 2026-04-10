@@ -1,8 +1,8 @@
 import {
-	Github,
-	Instagram,
-	Linkedin,
-	Twitter,
+	GitFork,
+	Globe,
+	Link,
+	X,
 } from 'lucide-react';
 
 export function MinimalFooter() {
@@ -48,19 +48,19 @@ export function MinimalFooter() {
 
 	const socialLinks = [
 		{
-			icon: <Github className="size-4" />,
+			icon: <GitFork className="size-4" />,
+			link: 'https://github.com/WhysBr',
+		},
+		{
+			icon: <Globe className="size-4" />,
 			link: '#',
 		},
 		{
-			icon: <Instagram className="size-4" />,
+			icon: <Link className="size-4" />,
 			link: '#',
 		},
 		{
-			icon: <Linkedin className="size-4" />,
-			link: '#',
-		},
-		{
-			icon: <Twitter className="size-4" />,
+			icon: <X className="size-4" />,
 			link: '#',
 		},
 	];

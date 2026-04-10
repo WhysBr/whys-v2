@@ -198,9 +198,9 @@ const HalideLanding: React.FC = () => {
 
         <div className="viewport">
           <div className="canvas-3d" ref={canvasRef}>
-            <div className="layer layer-1" ref={(el) => (layersRef.current[0] = el!)}></div>
-            <div className="layer layer-2" ref={(el) => (layersRef.current[1] = el!)}></div>
-            <div className="layer layer-3" ref={(el) => (layersRef.current[2] = el!)}></div>
+            <div className="layer layer-1" ref={(el) => { layersRef.current[0] = el!; }}></div>
+            <div className="layer layer-2" ref={(el) => { layersRef.current[1] = el!; }}></div>
+            <div className="layer layer-3" ref={(el) => { layersRef.current[2] = el!; }}></div>
             <div className="contours"></div>
           </div>
         </div>
