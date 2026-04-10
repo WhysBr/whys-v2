@@ -3,6 +3,9 @@ import { DynamicFrameLayout } from "@/components/ui/dynamic-frame-layout";
 import type { Frame } from "@/components/ui/dynamic-frame-layout";
 import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { FeatureCard } from "@/components/ui/grid-feature-cards";
+import { motion, useReducedMotion } from 'motion/react';
+import { Target, Users, LayoutTemplate, Repeat, Rocket, Shield } from "lucide-react";
 
 const demoFrames: Frame[] = [
   {
@@ -70,6 +73,65 @@ const demoFrames: Frame[] = [
   },
 ];
 
+const processFeatures = [
+	{
+		title: 'Pre-Briefing',
+		icon: Target,
+		description: 'Initial data gathering, brand context absorption, and intelligent objective lock.',
+	},
+	{
+		title: 'Reunion',
+		icon: Users,
+		description: 'Strategic alignment meeting to secure targets and establish mission perimeters.',
+	},
+	{
+		title: 'Wireframes',
+		icon: LayoutTemplate,
+		description: 'Tactical blueprinting of the digital structure and the complete ecosystem logic.',
+	},
+	{
+		title: 'Alignment Iterations',
+		icon: Repeat,
+		description: 'Continuous feedback loops and operational refinement to guarantee absolute precision.',
+	},
+	{
+		title: 'Deployment',
+		icon: Rocket,
+		description: 'Full-scale launch of the application into the live production environment.',
+	},
+	{
+		title: 'Post-Support',
+		icon: Shield,
+		description: 'Robust, full-spectrum monitoring and operational maintenance of your digital assets.',
+	},
+];
+
+type ViewAnimationProps = {
+	delay?: number;
+	className?: React.ComponentProps<typeof motion.div>['className'];
+	children: React.ReactNode;
+};
+
+function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+	const shouldReduceMotion = useReducedMotion();
+
+	if (shouldReduceMotion) {
+		return <>{children}</>;
+	}
+
+	return (
+		<motion.div
+			initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
+			whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
+			viewport={{ once: true }}
+			transition={{ delay, duration: 0.8 }}
+			className={className}
+		>
+			{children}
+		</motion.div>
+	);
+}
+
 export default function AspirationSection() {
   const WHYS_WORDS = [
     "BRAND",
@@ -78,29 +140,6 @@ export default function AspirationSection() {
     "EXPERIENCE",
     "LEGACY",
     "STORY"
-  ];
-
-  const processSteps = [
-    {
-      title: "Briefing",
-      desc: "Intelligent data harvesting via brand profiling."
-    },
-    {
-      title: "Reunion",
-      desc: "Mission alignment and strategic objective lock."
-    },
-    {
-      title: "Wireframe",
-      desc: "Tactical blueprinting of the digital ecosystem."
-    },
-    {
-      title: "Alignment",
-      desc: "Continuous refinement cycles for absolute precision."
-    },
-    {
-      title: "Deployment",
-      desc: "Operational launch and sustained tactical support."
-    }
   ];
 
   return (
@@ -140,40 +179,39 @@ export default function AspirationSection() {
           </p>
         </div>
 
-        {/* Process Section - Put on top of "WHAT WE OFFER" */}
-        <div className="w-full mt-24 mb-32 flex flex-col items-center px-4 md:px-8">
-          <PointerHighlight containerClassName="mb-16">
-            <h2 className="text-5xl md:text-[5.5rem] font-black uppercase text-white tracking-tighter px-6 py-2 leading-none text-center">
-              Our Process
-            </h2>
-          </PointerHighlight>
+        <CyberneticBentoGrid />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 w-full max-w-[1400px]">
-             {processSteps.map((step, idx) => (
-                <GlowCard 
-                  key={idx} 
-                  glowColor="purple" 
-                  customSize={true} 
-                  className="min-h-[300px] flex flex-col justify-start w-full border border-white/5"
-                >
-                  <span className="text-[#965EC7] font-mono text-sm font-black tracking-[0.2em] uppercase mb-auto opacity-80">
-                    Stp.0{idx + 1}
-                  </span>
-                  
-                  <div className="flex flex-col gap-2 mt-auto">
-                    <h3 className="text-white text-2xl font-black uppercase tracking-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/50 text-xs font-mono leading-relaxed pr-4">
-                      {step.desc}
-                    </p>
-                  </div>
-                </GlowCard>
-             ))}
-          </div>
+        {/* --- OUR PROCESS SECTION --- */}
+        <div className="w-full mt-40 flex flex-col items-center mb-32 px-4 md:px-8">
+			    <AnimatedContainer className="mx-auto max-w-3xl text-center flex flex-col items-center mb-16">
+            <PointerHighlight containerClassName="mx-auto flex justify-center w-full">
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white inline-block">
+                Our Process
+              </h2>
+            </PointerHighlight>
+            <p className="text-white/40 mt-6 text-sm md:text-base font-mono tracking-widest uppercase">
+              Phase-by-phase tactical execution for optimal scale.
+            </p>
+          </AnimatedContainer>
+
+          <AnimatedContainer
+            delay={0.2}
+            className="grid grid-cols-1 border border-white/10 divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-3 md:divide-y-0 [&>div]:border-b [&>div]:border-white/10 sm:[&>div]:border-b-0 w-full max-w-6xl shadow-2xl shadow-black/50 overflow-hidden rounded-xl bg-black/40 backdrop-blur-sm"
+          >
+            {processFeatures.map((feature, i) => (
+              <FeatureCard 
+                key={i} 
+                feature={feature} 
+                className={`
+                  ${i >= 3 ? 'md:border-t md:border-white/10' : ''} 
+                  ${(i === 2 || i === 5) ? 'md:border-r-0' : ''}
+                  ${(i === 1 || i === 3 || i === 5) ? 'sm:border-t sm:border-white/10' : ''}
+                `} 
+              />
+            ))}
+          </AnimatedContainer>
         </div>
 
-        <CyberneticBentoGrid />
       </div>
     </section>
   );
